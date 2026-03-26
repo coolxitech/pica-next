@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { useUserStore } from '@/store/user'
-import { getFavourites } from '@/api/user'
+import { useUserStore } from '@/stores/user.store'
+import { getFavourites } from '@/api/user.api'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
-import ComicCard from '@/components/ComicCard.vue'
-import ComicListItem from '@/components/ComicListItem.vue'
-import LayoutToggle from '@/components/LayoutToggle.vue'
-import SkeletonCard from '@/components/SkeletonCard.vue'
-import ErrorRetry from '@/components/ErrorRetry.vue'
+import ComicCard from '@/components/comic/ComicCard.vue'
+import ComicListItem from '@/components/comic/ComicListItem.vue'
+import ComicListLayoutToggle from '@/components/comic/ComicListLayoutToggle.vue'
+import SkeletonCard from '@/components/feedback/SkeletonCard.vue'
+import ErrorState from '@/components/feedback/ErrorState.vue'
 import { Heart } from 'lucide-vue-next'
-import type { Comic } from '@/types/index'
+import type { Comic } from '@/types/comic'
 
 const userStore = useUserStore()
 const layout = computed(() => userStore.comicListLayout)
@@ -100,12 +100,12 @@ onMounted(() => loadPage(1))
               {{ opt.label }}
             </option>
           </select>
-          <LayoutToggle />
+        <ComicListLayoutToggle />
         </div>
       </div>
 
       <!-- Error -->
-      <ErrorRetry v-if="error" :message="error" @retry="() => loadPage(1)" />
+        <ErrorState v-if="error" :message="error" @retry="() => loadPage(1)" />
 
       <!-- Content -->
       <div v-else>

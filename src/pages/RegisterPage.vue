@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { Eye, EyeOff, Loader2 } from 'lucide-vue-next'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 import { register as apiRegister } from '@/api'
 
 const router = useRouter()
@@ -52,7 +52,7 @@ async function handleSubmit() {
       email: form.email,
       password: form.password,
     })
-    userStore.login(res.data.token, res.data.user as import('@/types/index').UserInfo)
+      userStore.login(res.data.token, res.data.user as import('@/types/user').UserInfo)
     router.push('/')
   } catch (err: any) {
     serverError.value = err?.response?.data?.message || '注册失败，请稍后重试'

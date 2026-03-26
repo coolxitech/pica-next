@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useUserStore } from '@/store/user'
-import type { HistoryEntry } from '@/types/index'
+import { useUserStore } from '@/stores/user.store'
+import type { HistoryEntry } from '@/types/common'
 
 const SAVE_INTERVAL_MS = 30_000
 

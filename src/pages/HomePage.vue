@@ -2,12 +2,12 @@
 defineOptions({ name: 'HomePage' })
 import { ref, onMounted, onActivated, onDeactivated, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { useComicStore } from '@/store/comics'
-import type { Category } from '@/types'
-import TagBadge from '@/components/TagBadge.vue'
-import SkeletonCard from '@/components/SkeletonCard.vue'
-import ErrorRetry from '@/components/ErrorRetry.vue'
-import { buildCategoryImageUrl } from '@/utils/imageServer'
+import { useComicStore } from '@/stores/comic.store'
+import type { Category } from '@/types/comic'
+import TagBadge from '@/components/comic/TagBadge.vue'
+import SkeletonCard from '@/components/feedback/SkeletonCard.vue'
+import ErrorState from '@/components/feedback/ErrorState.vue'
+import { buildCategoryImageUrl } from '@/utils/image-url'
 
 const router = useRouter()
 const comicStore = useComicStore()
@@ -105,7 +105,7 @@ onActivated(() => { nextTick(() => window.scrollTo({ top: savedScrollY.value, be
       <section class="space-y-4">
         <h2 class="text-sm font-bold text-muted-foreground uppercase tracking-widest">分类浏览</h2>
 
-        <ErrorRetry v-if="categoriesError" :message="categoriesError" @retry="loadCategories" />
+        <ErrorState v-if="categoriesError" :message="categoriesError" @retry="loadCategories" />
 
         <!-- Loading -->
         <div v-else-if="categoriesLoading" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3">

@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Eye, EyeOff, Loader2 } from 'lucide-vue-next'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 import { login as apiLogin, getProfile } from '@/api'
 
 const router = useRouter()

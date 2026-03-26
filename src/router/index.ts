@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,9 +12,9 @@ const router = createRouter({
     { path: '/comic/:id/chapter/:cid', component: () => import('@/pages/ReaderPage.vue') },
     { path: '/favorites', component: () => import('@/pages/FavoritesPage.vue') },
     { path: '/history', component: () => import('@/pages/HistoryPage.vue') },
-    { path: '/user', component: () => import('@/pages/UserCenterPage.vue') },
+    { path: '/user', component: () => import('@/pages/UserProfilePage.vue') },
     { path: '/settings', component: () => import('@/pages/SettingsPage.vue') },
-    { path: '/filter', component: () => import('@/pages/FilterPage.vue') },
+    { path: '/filter', component: () => import('@/pages/TagFilterPage.vue') },
     { path: '/login', component: () => import('@/pages/LoginPage.vue') },
     { path: '/register', component: () => import('@/pages/RegisterPage.vue') },
   ],

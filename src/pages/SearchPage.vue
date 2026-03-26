@@ -3,16 +3,16 @@ defineOptions({ name: 'SearchPage' })
 import { computed, watch, onMounted, onActivated, onDeactivated, nextTick, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Search, Clock, Trash2 } from 'lucide-vue-next'
-import { useComicStore } from '@/store/comics'
-import { useUserStore } from '@/store/user'
+import { useComicStore } from '@/stores/comic.store'
+import { useUserStore } from '@/stores/user.store'
 import { useComicList } from '@/composables/useComicList'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
 import { useSearchHistory } from '@/composables/useSearchHistory'
-import ComicCard from '@/components/ComicCard.vue'
-import ComicListItem from '@/components/ComicListItem.vue'
-import LayoutToggle from '@/components/LayoutToggle.vue'
-import SkeletonCard from '@/components/SkeletonCard.vue'
-import ErrorRetry from '@/components/ErrorRetry.vue'
+import ComicCard from '@/components/comic/ComicCard.vue'
+import ComicListItem from '@/components/comic/ComicListItem.vue'
+import ComicListLayoutToggle from '@/components/comic/ComicListLayoutToggle.vue'
+import SkeletonCard from '@/components/feedback/SkeletonCard.vue'
+import ErrorState from '@/components/feedback/ErrorState.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -200,11 +200,11 @@ onActivated(async () => {
                 GO
               </button>
             </div>
-            <LayoutToggle />
+        <ComicListLayoutToggle />
           </div>
         </div>
 
-        <ErrorRetry v-if="error && items.length === 0" :message="`搜索时出错，请重试`" @retry="doSearch" />
+        <ErrorState v-if="error && items.length === 0" :message="`搜索时出错，请重试`" @retry="doSearch" />
 
         <div v-if="!error || items.length > 0">
           <div

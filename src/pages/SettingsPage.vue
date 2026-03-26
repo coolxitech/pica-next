@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Sun, Moon, Monitor, Check } from 'lucide-vue-next'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 import { applyThemeColor, applyColorMode } from '@/utils/theme'
 
 const userStore = useUserStore()

@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/store/user'
-import { useComicStore } from '@/store/comics'
-import type { Comic, PageResult, TagFilter } from '@/types/index'
+import { useUserStore } from '@/stores/user.store'
+import { useComicStore } from '@/stores/comic.store'
+import type { Comic } from '@/types/comic'
+import type { PageResult, TagFilter } from '@/types/common'
 
 type FetchFn = (page: number) => Promise<PageResult<Comic>>
 

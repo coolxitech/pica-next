@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Trash2, BookOpen } from 'lucide-vue-next'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 
 const router = useRouter()
 const userStore = useUserStore()

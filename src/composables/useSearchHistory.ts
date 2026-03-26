@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 
 export function useSearchHistory() {
   const userStore = useUserStore()

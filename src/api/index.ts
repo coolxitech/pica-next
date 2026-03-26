@@ -1,2 +1,2 @@
-export * from './user'
-export * from './comic'
+export * from './user.api'
+export * from './comic.api'

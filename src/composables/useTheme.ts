@@ -1,6 +1,6 @@
 import { watch, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/stores/user.store'
 import { applyThemeColor, applyColorMode } from '@/utils/theme'
 
 export function useTheme() {

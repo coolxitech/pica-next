@@ -3,10 +3,10 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Filter, ArrowUp } from 'lucide-vue-next'
 import { useTheme } from '@/composables/useTheme'
-import { getProfile } from '@/api/user'
-import { useUserStore } from '@/store/user'
-import Navbar from '@/components/Navbar.vue'
-import BottomNav from '@/components/BottomNav.vue'
+import { getProfile } from '@/api/user.api'
+import { useUserStore } from '@/stores/user.store'
+import AppNavbar from '@/components/layout/AppNavbar.vue'
+import AppBottomNav from '@/components/layout/AppBottomNav.vue'
 
 useTheme()
 
@@ -42,7 +42,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <div class="min-h-screen bg-background text-foreground flex flex-col overflow-x-hidden">
-    <Navbar v-if="showChrome" />
+    <AppNavbar v-if="showChrome" />
     <main class="flex-1 min-w-0" :class="showChrome ? 'pt-14 pb-16 md:pb-0' : ''">
       <RouterView v-slot="{ Component }">
         <KeepAlive :include="['ComicListPage', 'SearchPage', 'HomePage']">
@@ -50,7 +50,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         </KeepAlive>
       </RouterView>
     </main>
-    <BottomNav v-if="showChrome" />
+    <AppBottomNav v-if="showChrome" />
 
     <!-- 移动端筛选浮动按钮 -->
     <button

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useComicStore } from '@/store/comics'
-import { useUserStore } from '@/store/user'
-import { getComicPages } from '@/api/comic'
-import type { ComicDetail, ChapterSummary } from '@/types/index'
-import { buildComicImageUrl, handleImageError, warmupServers, getPreferredServer } from '@/utils/imageServer'
+import { useComicStore } from '@/stores/comic.store'
+import { useUserStore } from '@/stores/user.store'
+import { getComicPages } from '@/api/comic.api'
+import type { ComicDetail, ChapterSummary } from '@/types/comic'
+import { buildComicImageUrl, handleImageError, warmupServers, getPreferredServer } from '@/utils/image-url'
 
 const route = useRoute()
 const router = useRouter()

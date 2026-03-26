@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useComicStore } from '@/store/comics'
-import { useUserStore } from '@/store/user'
-import type { ComicDetail } from '@/types/index'
-import { getComments, getCommentChildrens, postComment, likeComment } from '@/api/comic'
-import type { Comment as ApiComment, CommentsResult as ApiCommentsResult, CommentChildrensResult as ApiCommentChildrensResult } from '@/api/comic'
-import TagBadge from '@/components/TagBadge.vue'
-import ErrorRetry from '@/components/ErrorRetry.vue'
+import { useComicStore } from '@/stores/comic.store'
+import { useUserStore } from '@/stores/user.store'
+import type { ComicDetail } from '@/types/comic'
+import { getComments, getCommentChildrens, postComment, likeComment } from '@/api/comic.api'
+import type { Comment as ApiComment, CommentsResult as ApiCommentsResult, CommentChildrensResult as ApiCommentChildrensResult } from '@/api/comic.api'
+import TagBadge from '@/components/comic/TagBadge.vue'
+import ErrorState from '@/components/feedback/ErrorState.vue'
 import placeholderAvatar from '@/assets/placeholder_avatar.png'
 import {
   Heart, BookOpen, ArrowUpDown, ArrowLeft, CheckCircle2, Eye, Images, Home, MessageSquare, Send, Bot, Mars, Venus
 } from 'lucide-vue-next'
-import { buildComicImageUrl } from '@/utils/imageServer'
+import { buildComicImageUrl } from '@/utils/image-url'
 
 const route = useRoute()
 const router = useRouter()
@@ -425,7 +425,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <ErrorRetry v-else-if="error" :message="error" @retry="load" />
+    <ErrorState v-else-if="error" :message="error" @retry="load" />
 
     <div
       v-else-if="comic"

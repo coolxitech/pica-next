@@ -2,15 +2,15 @@
 import { computed, onMounted, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ArrowLeft } from 'lucide-vue-next'
-import { useComicStore } from '@/store/comics'
-import { useUserStore } from '@/store/user'
+import { useComicStore } from '@/stores/comic.store'
+import { useUserStore } from '@/stores/user.store'
 import { useComicList } from '@/composables/useComicList'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
-import ComicCard from '@/components/ComicCard.vue'
-import ComicListItem from '@/components/ComicListItem.vue'
-import LayoutToggle from '@/components/LayoutToggle.vue'
-import SkeletonCard from '@/components/SkeletonCard.vue'
-import ErrorRetry from '@/components/ErrorRetry.vue'
+import ComicCard from '@/components/comic/ComicCard.vue'
+import ComicListItem from '@/components/comic/ComicListItem.vue'
+import ComicListLayoutToggle from '@/components/comic/ComicListLayoutToggle.vue'
+import SkeletonCard from '@/components/feedback/SkeletonCard.vue'
+import ErrorState from '@/components/feedback/ErrorState.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -53,11 +53,11 @@ watch(creatorId, () => reload())
         <ArrowLeft class="w-5 h-5 text-foreground" />
       </button>
       <span class="text-base font-bold text-foreground truncate flex-1">{{ creatorName }} 的作品</span>
-      <LayoutToggle />
+        <ComicListLayoutToggle />
     </div>
 
     <div class="max-w-7xl mx-auto px-4 py-6 space-y-5">
-      <ErrorRetry v-if="error && items.length === 0" :message="error" @retry="reload" />
+        <ErrorState v-if="error && items.length === 0" :message="error" @retry="reload" />
 
       <div v-else>
         <!-- Grid -->
