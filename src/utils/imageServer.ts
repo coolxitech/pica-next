@@ -14,7 +14,7 @@ export interface ServerStatus {
   testing: boolean
 }
 
-export const FIXED_IMAGE_SERVER = import.meta.env.VITE_IMAGE_BASE_URL || 'https://pica-img.cobra.watch'
+export const FIXED_IMAGE_SERVER = import.meta.env.VITE_IMAGE_BASE_URL
 
 export const ALL_SERVERS: ServerInfo[] = [
   { url: FIXED_IMAGE_SERVER, label: 'Cobra' },
