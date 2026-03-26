@@ -1,139 +1,251 @@
 # Pica Next
 
-基于 Vue 3 + TypeScript + Vite 的漫画浏览前端项目，包含登录注册、首页推荐、分类筛选、详情页、阅读器、收藏与历史等核心功能。
+一个面向自建场景的哔咔漫画第三方前端项目。
+
+它不是传统那种“后台能用，前台将就”的站点模板，而是围绕哔咔漫画的浏览与阅读场景，把首页分类、搜索、详情、评论、收藏、历史、个人中心、签到成长体系和沉浸式阅读器整合成一套完整的产品体验。  
+如果你想搭一个看起来像成品、而不是只把接口数据硬渲染出来的哔咔第三方前端，`Pica Next` 的方向就是这个。
+
+## 它看起来像什么
+
+这是一个明显偏产品化的 UI，而不是后台系统皮肤：
+
+- 移动优先布局，手机上使用体验完整，桌面端也能自然铺开
+- 首页是卡片化分类入口，不是朴素列表
+- 登录 / 注册页有完整的视觉装饰、动效和品牌氛围
+- 漫画详情页包含封面 Hero、作者卡、章节区、评论区和操作区
+- 阅读器支持沉浸式模式，专门做了独立的顶部工具栏和章节抽屉
+- 全局支持主题色切换、亮暗模式切换，页面不会显得死板
+
+一句话概括：这套 UI 更像一个认真做过交互和视觉取舍的哔咔第三方客户端，而不是“把接口渲染出来”的页面集合。
+
+## 适合谁
+
+`Pica Next` 适合这几类使用场景：
+
+- 想自建哔咔漫画第三方网站的人
+- 希望拿一个视觉完成度不错的哔咔 Web 前端做展示或二次开发的人
+- 想做移动端友好的哔咔 Web 客户端，而不是传统资讯站样式的人
+
+## 产品卖点
+
+### 1. 首页不是冷冰冰的内容容器
+
+首页提供：
+
+- 分类浏览
+- 热门关键词入口
+- 平滑动效和卡片式视觉结构
+
+对用户来说，它不是“先想办法找入口”，而是打开就能开始逛。
+
+### 2. 搜索体验不是一锤子买卖
+
+搜索页已经做了完整使用链路：
+
+- 搜索历史
+- 关键词回填
+- 无限滚动
+- 跳页
+- 网格 / 列表布局切换
+- 标签筛选联动
+
+这意味着它不是只为了“能搜到”，而是考虑了连续浏览和回访体验。
+
+### 3. 漫画详情页有内容站该有的厚度
+
+详情页不是单薄的“封面 + 简介 + 开始阅读”。
+
+这里已经包含：
+
+- 封面、作者、标签、浏览量、喜欢数等信息展示
+- 章节排序与继续阅读
+- 收藏状态
+- 评论、回复、点赞、置顶评论
+- 关联作者入口
+
+页面信息密度高，但仍然保持了较强的可读性和层次感。
+
+### 4. 阅读器是真正的核心体验
+
+阅读器是这个项目最有产品气质的部分之一。
+
+它支持：
+
+- 竖向滚动阅读
+- 横向翻页阅读
+- 自动记录阅读进度
+- 章节切换
+- 断点续读
+- 图片分页追加加载
+- 图片服务失败后的兜底处理
+
+对哔咔这类内容产品来说，首页和详情页决定第一印象，阅读器决定用户会不会留下来。这个项目显然把重点放对了。
+
+### 5. 用户侧体验已经成体系
+
+不是只有“登录成功”这么简单。
+
+现有用户链路包括：
+
+- 登录 / 注册
+- 收藏
+- 阅读历史
+- 搜索历史
+- 个人中心
+- 每日签到
+- EXP / 等级成长
+- 内容过滤
+- 外观偏好持久化
+
+这让项目更接近“可运营的内容产品”，而不是单页展示壳。
 
 ## 技术栈
+
+项目使用的是一套比较现代、也比较适合做哔咔第三方前端的技术组合：
 
 - Vue 3
 - TypeScript
 - Vite
 - Vue Router
-- Pinia + pinia-plugin-persistedstate
-- Tailwind CSS v4 + shadcn-vue
+- Pinia
+- `pinia-plugin-persistedstate`
+- Tailwind CSS v4
+- shadcn-vue
 - Axios
+- animate.css
+- lucide-vue-next
 
-## 环境要求
+## 技术选型为什么对这个项目加分
 
-- Node.js 18+
-- pnpm 8+
+### Vue 3 + TypeScript
 
-## 快速开始
+保证页面拆分、状态管理和复杂交互逻辑都能维持在一个可控范围内。  
+对于有搜索、详情、阅读器、评论区、个人中心这类多页面产品来说，这种组合比随手写脚本更稳。
 
-```bash
-# 安装依赖
-pnpm install
+### Pinia + 本地持久化
 
-# 启动开发环境（默认端口 8891）
-pnpm dev
+主题、搜索历史、阅读历史、筛选条件、收藏状态、用户信息都可以持久保存。  
+这类能力对内容产品尤其重要，因为用户体验很多时候就赢在“下次回来它还记得我”。
+
+### Tailwind CSS v4 + shadcn-vue
+
+这套组合让页面既能保持统一风格，又能做出比较灵活的视觉变化。  
+所以你会看到这个项目不是传统后台 UI 的味道，而是更偏内容产品、卡片化、层次感更强的表达方式。
+
+### 动效与图标体系
+
+项目引入了 `animate.css` 和 `lucide-vue-next`，让页面在切换、进入、悬停和状态反馈上更有“成品感”。  
+好的 UI 不只是配色和圆角，动效节奏也是体验的一部分。
+
+## 界面风格
+
+从现有实现来看，这个项目的视觉风格大致是：
+
+- 现代感的卡片式内容布局
+- 明显偏移动端产品设计语言
+- 柔和但不廉价的高亮色体系
+- 通过阴影、边框、渐变和动效拉出层次
+- 登录页、详情页、阅读页各自有比较清晰的视觉角色
+
+如果你要的是“看起来不像随手拼的哔咔套壳”，这套界面是有说服力的。
+
+## 功能清单
+
+- 用户登录 / 注册
+- 首页分类浏览
+- 热门关键词入口
+- 分类列表页
+- 作者作品页
+- 搜索页
+- 漫画详情页
+- 评论 / 回复 / 点赞
+- 收藏页
+- 阅读历史页
+- 个人中心
+- 每日签到与等级体系
+- 内容白名单 / 黑名单 / 预设屏蔽
+- 外观设置
+- 阅读器双模式
+
+## 项目结构
+
+```text
+src/
+  api/          接口封装、请求签名、漫画与用户 API
+  components/   按 comic、layout、reader、settings、user 等维度拆分
+  composables/  阅读进度、无限滚动、主题、搜索历史等逻辑复用
+  pages/        首页、搜索、详情、阅读器、设置、用户中心等页面
+  router/       路由与登录守卫
+  stores/       用户态与漫画态管理
+  types/        TypeScript 类型定义
+  utils/        图片地址与主题工具
 ```
 
-启动后访问：`http://localhost:8891`
+## 自建前提
 
-## 环境变量
+这个项目是哔咔漫画第三方前端成品，不包含可直接拿来用的后端服务。
 
-复制 `.env.example` 为 `.env` 并按需填写：
+要真正跑起来，你需要准备：
+
+- 可访问的哔咔相关 API
+- 可访问的图片服务
+- 推荐使用 Nginx 做反向代理
+
+环境变量：
 
 ```bash
 VITE_API_BASE_URL=
 VITE_IMAGE_BASE_URL=
 ```
 
-说明：
-- `VITE_API_BASE_URL`：后端 API 地址
-- `VITE_IMAGE_BASE_URL`：图片服务地址
-
-## 使用前提（必须先部署 API）
-
-本项目是前端工程，必须有可用的后端 API 和图片服务才可正常使用。  
-如果不部署后端或不配置反向代理，页面会出现请求失败、图片无法加载等问题。
-
-推荐做法：
-- 先部署你的 API 服务（或可访问的上游 API）
-- 用 Nginx 做反向代理，统一对外提供地址
-- 在 `.env` 里填写代理后的地址
-
-示例：
+例如：
 
 ```bash
 VITE_API_BASE_URL=https://your-domain.com/api
 VITE_IMAGE_BASE_URL=https://your-domain.com/img
 ```
 
-## 可用脚本
+项目请求层位于 [src/api/http.ts](/E:/Project/Web/pica-next/src/api/http.ts)，其中已经实现了请求签名、时间戳、`nonce`、token 注入和 401 处理逻辑。  
+这意味着它不是一个“拿到接口地址就随便调”的极简壳子，而是已经贴近真实业务环境的哔咔第三方前端。
+
+## 本地启动
 
 ```bash
-# 本地开发
+pnpm install
 pnpm dev
+```
 
-# 类型检查 + 生产构建
+默认端口：
+
+```text
+http://localhost:8891
+```
+
+其他命令：
+
+```bash
 pnpm build
-
-# 预览生产构建结果
 pnpm preview
 ```
 
-## 目录结构
+## 部署方式
 
-```text
-src/
-  api/          # 接口请求封装
-  components/   # 通用组件
-  composables/  # 组合式逻辑
-  pages/        # 页面级组件
-  router/       # 路由配置
-  store/        # Pinia 状态管理
-  types/        # TypeScript 类型定义
-  utils/        # 工具函数与请求封装
-```
+构建产物在 `dist/` 目录，可以部署到任意静态服务器。  
+如果你要正式使用，建议：
 
-## 构建与部署
+1. 用 Nginx 托管前端静态文件
+2. 把 API 服务反代到 `/api`
+3. 把图片服务反代到 `/img`
 
-执行 `pnpm build` 后，产物默认输出到 `dist/` 目录，可通过静态服务器或 Nginx 部署。
+仓库已经提供了 [nginx.conf](/E:/Project/Web/pica-next/nginx.conf) 作为配置参考。
 
-## Nginx 配置示例
+## 总结
 
-下面给出一个完整示例：同一域名下提供前端静态资源，并把 `/api`、`/img` 分别反代到 API 服务和图片服务。
+`Pica Next` 的价值不在于“又一个哔咔漫画客户端”，而在于它是一个完成度较高的哔咔漫画第三方前端：
 
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
+- 有前台气质，不像后台模板
+- 有阅读体验，不是单纯列表壳
+- 有用户状态，不是匿名静态展示
+- 有视觉完成度，适合直接拿去做自建项目展示
 
-    # 前端静态资源
-    root /var/www/pica-next/dist;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    # API 反代
-    location ^~ /api/ {
-        proxy_pass https://picaapi.go2778.com/;
-        proxy_set_header Host picaapi.go2778.com;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_ssl_server_name on;
-        proxy_connect_timeout 60s;
-        proxy_send_timeout 600s;
-        proxy_read_timeout 600s;
-    }
-
-    # 图片服务反代
-    location ^~ /img/ {
-        proxy_pass https://img.safedataplj.com/;
-        proxy_set_header Host img.safedataplj.com;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_ssl_server_name on;
-        proxy_connect_timeout 60s;
-        proxy_send_timeout 600s;
-        proxy_read_timeout 600s;
-    }
-}
-```
-
-如果你想直接使用仓库中的配置片段，也可以参考：
-- [nginx.conf](E:/Project/Web/pica-next/nginx.conf)
+如果你的目标是做一个哔咔漫画第三方站，而不是做一个“能请求接口的页面集合”，这个项目的方向是对的。
